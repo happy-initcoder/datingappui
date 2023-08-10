@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dating_app_ui/widget/button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class Onboarding extends StatelessWidget {
   const Onboarding({super.key});

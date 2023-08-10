@@ -1,8 +1,10 @@
 import 'package:dating_app_ui/Signup_page.dart';
 import 'package:dating_app_ui/firends.dart';
+import 'package:dating_app_ui/gender.dart';
 import 'package:dating_app_ui/notificaton.dart';
 import 'package:dating_app_ui/number_screen.dart';
 import 'package:dating_app_ui/onboarding.dart';
+import 'package:dating_app_ui/passions.dart';
 import 'package:dating_app_ui/profile_details.dart';
 import 'package:flutter/material.dart';
 
@@ -23,6 +25,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: NotificationPage());
+        home: Passions());
   }
 }

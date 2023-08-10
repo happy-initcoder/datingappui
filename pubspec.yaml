@@ -75,6 +75,22 @@ flutter:
     - assets/images/girl3.png
     - assets/images/people.png
     - assets/images/chat.png
+    - assets/images/i1.png
+    - assets/images/i2.png
+    - assets/images/i3.png
+    - assets/images/i4.png
+    - assets/images/i5.png
+    - assets/images/i6.png
+    - assets/images/i7.png
+    - assets/images/i8.png
+    - assets/images/i9.png
+    - assets/images/i10.png
+    - assets/images/i11.png
+    - assets/images/i12.png
+    - assets/images/i13.png
+    - assets/images/i14.png
+    
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
