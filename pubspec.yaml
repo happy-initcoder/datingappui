@@ -75,6 +75,8 @@ flutter:
     - assets/images/girl3.png
     - assets/images/people.png
     - assets/images/chat.png
+    - assets/images/face.png
+
     - assets/images/i1.png
     - assets/images/i2.png
     - assets/images/i3.png
@@ -89,6 +91,16 @@ flutter:
     - assets/images/i12.png
     - assets/images/i13.png
     - assets/images/i14.png
+    - assets/images/setting-config.png
+    - assets/images/match.png
+    - assets/images/nav1.png
+    - assets/images/nav2.png
+    - assets/images/nav3.png
+    - assets/images/nav4.png
+    - assets/images/photo1.png
+    - assets/images/Vector.png
+    - assets/images/star.png
+    - assets/images/close-small.png
     
 
 

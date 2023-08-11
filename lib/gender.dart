@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:dating_app_ui/widget/button.dart';
 import 'package:flutter/material.dart';
 

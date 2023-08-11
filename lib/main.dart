@@ -1,6 +1,8 @@
+import 'package:dating_app_ui/MatchScreen.dart';
 import 'package:dating_app_ui/Signup_page.dart';
 import 'package:dating_app_ui/firends.dart';
 import 'package:dating_app_ui/gender.dart';
+import 'package:dating_app_ui/mainScreen.dart';
 import 'package:dating_app_ui/notificaton.dart';
 import 'package:dating_app_ui/number_screen.dart';
 import 'package:dating_app_ui/onboarding.dart';
@@ -25,6 +27,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: Passions());
+        home: MatchScreen());
   }
 }
