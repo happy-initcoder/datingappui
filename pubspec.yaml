@@ -39,6 +39,7 @@ dependencies:
   
   
   intl_phone_field: ^3.2.0
+  swipe_cards: ^2.0.0+1
 
 dev_dependencies:
   flutter_test:
@@ -101,6 +102,8 @@ flutter:
     - assets/images/Vector.png
     - assets/images/star.png
     - assets/images/close-small.png
+    - assets/images/like.png
+    - assets/images/photo2.png
     
 
 
