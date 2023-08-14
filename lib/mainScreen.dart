@@ -69,6 +69,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
         key: _scaffoldKey,
         bottomNavigationBar: BottomNavigationBar(
@@ -102,7 +103,7 @@ class _MainScreenState extends State<MainScreen> {
           selectedItemColor: Colors.pink,
         ),
         body: Padding(
-          padding: EdgeInsets.all(25),
+          padding: EdgeInsets.only(top: 25, right: 25, left: 25),
           child: Container(
             height: MediaQuery.of(context).size.height,
             child: Column(children: [
@@ -147,7 +148,12 @@ class _MainScreenState extends State<MainScreen> {
                     width: 52,
                     child: Padding(
                         padding: const EdgeInsets.only(left: 5),
-                        child: Image.asset('assets/images/setting-config.png')),
+                        child: GestureDetector(
+                            onTap: () => showModalBottomSheet(
+                                context: context,
+                                builder: (context) => buildSheet()),
+                            child: Image.asset(
+                                'assets/images/setting-config.png'))),
                   ),
                 ],
               ),
@@ -272,4 +278,35 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ));
   }
+
+  Widget buildSheet() => Padding(
+        padding: const EdgeInsets.all(40),
+        child: Container(
+          child: Column(children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Filters',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+                // Padding(
+                //   padding: EdgeInsets.only(left: 70),
+                //   child: Text(
+                //     'clear',
+                //     style: TextStyle(color: Color.fromRGBO(233, 64, 87, 1)),
+                //   ),
+                // ),
+              ],
+            ),
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                'Intrested in',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+            ),
+          ]),
+        ),
+      );
 }
