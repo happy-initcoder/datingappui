@@ -16,126 +16,60 @@ class MatchesPage extends StatefulWidget {
 class _MatchesPageState extends State<MatchesPage> {
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
-    int _index = 1;
-    Widget pn;
-    switch (_index) {
-      case 0:
-        _navigatorKey.currentState?.pushReplacementNamed("MainScreen");
-
-        break;
-      case 1:
-        return MatchesPage();
-
-      case 2:
-        return MessagesScreen();
-
-      case 3:
-        return ProfileScreen();
-    }
-    Route<dynamic> generateRoute(RouteSettings settings) {
-      switch (settings.name) {
-        case "MatchesPage":
-          return MaterialPageRoute(builder: (context) => MatchesPage());
-        case "Messages":
-          return MaterialPageRoute(builder: (context) => MessagesScreen());
-        case "ProfileScreen":
-          return MaterialPageRoute(builder: (context) => ProfileScreen());
-        default:
-          return MaterialPageRoute(builder: (context) => MainScreen());
-      }
-    }
-
-    return Scaffold(
-      bottomNavigationBar: bottomNavBar(_index),
-      // BottomNavigationBar(
-      //   onTap: (newIndex) => setState(() => _index = newIndex),
-      //   currentIndex: _index,
-      //   items: [
-      //     BottomNavigationBarItem(
-      //       label: '',
-      //       icon: ImageIcon(
-      //         AssetImage('assets/images/nav1.png'),
-      //       ),
-      //     ),
-      //     BottomNavigationBarItem(
-      //       label: '',
-      //       icon: ImageIcon(
-      //         AssetImage('assets/images/nav2.png'),
-      //       ),
-      //     ),
-      //     BottomNavigationBarItem(
-      //       label: '',
-      //       icon: ImageIcon(
-      //         AssetImage('assets/images/nav3.png'),
-      //       ),
-      //     ),
-      //     BottomNavigationBarItem(
-      //       label: '',
-      //       icon: ImageIcon(
-      //         AssetImage('assets/images/nav4.png'),
-      //       ),
-      //     ),
-      //   ],
-      //   type: BottomNavigationBarType.fixed,
-      //   selectedItemColor: Colors.pink,
-      // ),
-      body: Padding(
-        padding: EdgeInsets.only(top: 40, right: 40, left: 40),
-        child: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      'Matches',
-                      style:
-                          TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
+    return Padding(
+      padding: EdgeInsets.only(top: 40, right: 40, left: 40),
+      child: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Text(
+                    'Matches',
+                    style: TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
+                  ),
+                  Spacer(),
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey.shade300),
+                      borderRadius: BorderRadius.circular(15),
                     ),
-                    Spacer(),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey.shade300),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      height: 52,
-                      width: 52,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 5),
-                        child: Icon(Icons.arrow_back_ios, color: Colors.pink),
-                      ),
+                    height: 52,
+                    width: 52,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: Icon(Icons.arrow_back_ios, color: Colors.pink),
                     ),
-                  ],
-                ),
-                SizedBox(height: 10),
-                Text(
-                  'This is the list of people who have liked you and your matches.',
-                  style: TextStyle(fontSize: 16),
-                ),
-                SizedBox(height: 40),
-                Row(
-                  children: [
-                    Column(
-                      children: [
-                        matchCards('assets/images/m1.png', 'Lailani,19'),
-                        matchCards('assets/images/m5.png', 'Reagan,20'),
-                        matchCards('assets/images/m3.png', 'Steffie,21'),
-                        matchCards('assets/images/m5.png', 'Jessica,23')
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        matchCards('assets/images/m3.png', 'jasy,23'),
-                        matchCards('assets/images/m2.png', 'Vinni,21'),
-                        matchCards('assets/images/m5.png', 'Razzi,23'),
-                        matchCards('assets/images/m1.png', 'Steffie,26')
-                      ],
-                    )
-                  ],
-                )
-              ],
-            ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+              Text(
+                'This is the list of people who have liked you and your matches.',
+                style: TextStyle(fontSize: 16),
+              ),
+              SizedBox(height: 40),
+              Row(
+                children: [
+                  Column(
+                    children: [
+                      matchCards('assets/images/m1.png', 'Lailani,19'),
+                      matchCards('assets/images/m5.png', 'Reagan,20'),
+                      matchCards('assets/images/m3.png', 'Steffie,21'),
+                      matchCards('assets/images/m5.png', 'Jessica,23')
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      matchCards('assets/images/m3.png', 'jasy,23'),
+                      matchCards('assets/images/m2.png', 'Vinni,21'),
+                      matchCards('assets/images/m5.png', 'Razzi,23'),
+                      matchCards('assets/images/m1.png', 'Steffie,26')
+                    ],
+                  )
+                ],
+              )
+            ],
           ),
         ),
       ),

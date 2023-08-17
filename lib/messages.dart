@@ -17,198 +17,167 @@ class _MessagesScreenState extends State<MessagesScreen> {
   Widget build(BuildContext context) {
     final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
     var size = MediaQuery.of(context).size;
-    int _index = 2;
-    Widget pn;
-    switch (_index) {
-      case 0:
-        _navigatorKey.currentState?.pushReplacementNamed("MainScreen");
 
-        break;
-      case 1:
-        return MatchesPage();
-
-      case 2:
-        return MessagesScreen();
-
-      case 3:
-        return ProfileScreen();
-    }
-    Route<dynamic> generateRoute(RouteSettings settings) {
-      switch (settings.name) {
-        case "MatchesPage":
-          return MaterialPageRoute(builder: (context) => MatchesPage());
-        case "Messages":
-          return MaterialPageRoute(builder: (context) => MessagesScreen());
-        case "ProfileScreen":
-          return MaterialPageRoute(builder: (context) => ProfileScreen());
-        default:
-          return MaterialPageRoute(builder: (context) => MainScreen());
-      }
-    }
-
-    return Scaffold(
-      bottomNavigationBar: bottomNavBar(_index),
-      body: Padding(
-        padding: EdgeInsets.only(left: 40, top: 40),
-        child: Container(
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Text(
-                    'Messages',
-                    style: TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
-                  ),
-                  Spacer(),
-                  Padding(
-                    padding: EdgeInsets.only(right: 40),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey.shade300),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      height: 52,
-                      width: 52,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 5),
-                        child: ImageIcon(
-                          AssetImage('assets/images/setting-config.png'),
-                          color: Colors.pink,
-                        ),
+    return Padding(
+      padding: EdgeInsets.only(left: 40, top: 40),
+      child: Container(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Text(
+                  'Messages',
+                  style: TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
+                ),
+                Spacer(),
+                Padding(
+                  padding: EdgeInsets.only(right: 40),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey.shade300),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    height: 52,
+                    width: 52,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: ImageIcon(
+                        AssetImage('assets/images/setting-config.png'),
+                        color: Colors.pink,
                       ),
                     ),
                   ),
-                ],
-              ),
-              SizedBox(height: 20),
-              Padding(
-                padding: EdgeInsets.only(right: 40),
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey.shade300),
-                    borderRadius: BorderRadius.circular(15),
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            Padding(
+              padding: EdgeInsets.only(right: 40),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey.shade300),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                height: 48,
+                width: 295,
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Row(
+                    children: [
+                      Icon(Icons.search),
+                      Text(
+                        'Search',
+                        style: TextStyle(fontSize: 14),
+                      ),
+                    ],
                   ),
-                  height: 48,
-                  width: 295,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Row(
+                ),
+              ),
+            ),
+            SizedBox(height: 10),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Activities',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            SizedBox(height: 5),
+            SizedBox(
+              width: size.width,
+              height: 100,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: EdgeInsets.only(right: 15),
+                    child: Column(
                       children: [
-                        Icon(Icons.search),
-                        Text(
-                          'Search',
-                          style: TextStyle(fontSize: 14),
+                        DashedCircle(
+                          gapSize: 0,
+                          color: Colors.pink,
+                          child: Padding(
+                            padding: const EdgeInsets.all(3.0),
+                            child: CircleAvatar(
+                              radius: 33,
+                              backgroundColor: Colors.red,
+                              backgroundImage:
+                                  AssetImage('assets/images/photo1.png'),
+                            ),
+                          ),
                         ),
+                        Text(
+                          'Name',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        )
                       ],
                     ),
-                  ),
-                ),
+                  );
+                },
               ),
-              SizedBox(height: 10),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Activities',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+            ),
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                'Messages',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 5),
-              SizedBox(
-                width: size.width,
-                height: 100,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: EdgeInsets.only(right: 15),
-                      child: Column(
-                        children: [
-                          DashedCircle(
-                            gapSize: 0,
-                            color: Colors.pink,
-                            child: Padding(
-                              padding: const EdgeInsets.all(3.0),
-                              child: CircleAvatar(
-                                radius: 33,
-                                backgroundColor: Colors.red,
-                                backgroundImage:
-                                    AssetImage('assets/images/photo1.png'),
-                              ),
+            ),
+            SizedBox(
+              width: size.width - 40,
+              height: 390,
+              child: ListView.builder(
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: EdgeInsets.only(top: 10),
+                    child: Row(
+                      children: [
+                        DashedCircle(
+                          gapSize: 0,
+                          color: Colors.pink,
+                          child: Padding(
+                            padding: const EdgeInsets.all(3.0),
+                            child: CircleAvatar(
+                              radius: 33,
+                              backgroundColor: Colors.red,
+                              backgroundImage:
+                                  AssetImage('assets/images/photo1.png'),
                             ),
                           ),
-                          Text(
-                            'Name',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          )
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: Text(
-                  'Messages',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ),
-              SizedBox(
-                width: size.width - 40,
-                height: 390,
-                child: ListView.builder(
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: EdgeInsets.only(top: 10),
-                      child: Row(
-                        children: [
-                          DashedCircle(
-                            gapSize: 0,
-                            color: Colors.pink,
-                            child: Padding(
-                              padding: const EdgeInsets.all(3.0),
-                              child: CircleAvatar(
-                                radius: 33,
-                                backgroundColor: Colors.red,
-                                backgroundImage:
-                                    AssetImage('assets/images/photo1.png'),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 15),
-                          Column(
+                        ),
+                        SizedBox(width: 15),
+                        Column(
+                          children: [
+                            Text('Emelie'),
+                            Text('Sticker'),
+                          ],
+                        ),
+                        Spacer(),
+                        Padding(
+                          padding: EdgeInsets.only(right: 40),
+                          child: Column(
                             children: [
-                              Text('Emelie'),
-                              Text('Sticker'),
+                              Text('23 min'),
+                              CircleAvatar(
+                                radius: 10,
+                                child: Text('1'),
+                                backgroundColor: Colors.pink,
+                              )
                             ],
                           ),
-                          Spacer(),
-                          Padding(
-                            padding: EdgeInsets.only(right: 40),
-                            child: Column(
-                              children: [
-                                Text('23 min'),
-                                CircleAvatar(
-                                  radius: 10,
-                                  child: Text('1'),
-                                  backgroundColor: Colors.pink,
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              )
-            ],
-          ),
+                        )
+                      ],
+                    ),
+                  );
+                },
+              ),
+            )
+          ],
         ),
       ),
     );

@@ -15,7 +15,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   List<SwipeItem> _swipeItems = <SwipeItem>[];
-  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
+
   MatchEngine? _matchEngine;
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   List<String> _names = [
@@ -72,250 +72,183 @@ class _MainScreenState extends State<MainScreen> {
     super.initState();
   }
 
-  int _index = 0;
   @override
   Widget build(BuildContext context) {
-    Widget pn;
-    switch (_index) {
-      case 0:
-        _navigatorKey.currentState?.pushReplacementNamed("MainScreen");
-
-        break;
-      case 1:
-        return MatchesPage();
-
-      case 2:
-        return MessagesScreen();
-
-      case 3:
-        return ProfileScreen();
-    }
-    Route<dynamic> generateRoute(RouteSettings settings) {
-      switch (settings.name) {
-        case "MatchesPage":
-          return MaterialPageRoute(builder: (context) => MatchesPage());
-        case "Messages":
-          return MaterialPageRoute(builder: (context) => MessagesScreen());
-        case "ProfileScreen":
-          return MaterialPageRoute(builder: (context) => ProfileScreen());
-        default:
-          return MaterialPageRoute(builder: (context) => MainScreen());
-      }
-    }
-
     var size = MediaQuery.of(context).size;
 
-    return Scaffold(
-        key: _scaffoldKey,
-        bottomNavigationBar: bottomNavBar(_index),
-        // bottomNavigationBar: NavigationBarClass(),
-        // bottomNavigationBar: BottomNavigationBar(
-        //   onTap: (newIndex) => setState(() => _index = newIndex),
-        //   currentIndex: _index,
-        //   items: [
-        //     BottomNavigationBarItem(
-        //       label: '',
-        //       icon: ImageIcon(
-        //         AssetImage('assets/images/nav1.png'),
-        //       ),
-        //     ),
-        //     BottomNavigationBarItem(
-        //       label: '',
-        //       icon: ImageIcon(
-        //         AssetImage('assets/images/nav2.png'),
-        //       ),
-        //     ),
-        //     BottomNavigationBarItem(
-        //       label: '',
-        //       icon: ImageIcon(
-        //         AssetImage('assets/images/nav3.png'),
-        //       ),
-        //     ),
-        //     BottomNavigationBarItem(
-        //       label: '',
-        //       icon: ImageIcon(
-        //         AssetImage('assets/images/nav4.png'),
-        //       ),
-        //     ),
-        //   ],
-        //   type: BottomNavigationBarType.fixed,
-        //   selectedItemColor: Colors.pink,
-        // ),
-        body: Padding(
-          padding: EdgeInsets.only(top: 25, right: 25, left: 25),
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            child: Column(children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+    return Padding(
+      padding: EdgeInsets.only(top: 25, right: 25, left: 25),
+      child: Container(
+        height: MediaQuery.of(context).size.height,
+        child: Column(children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 50),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey.shade300),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  height: 52,
+                  width: 52,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Icon(Icons.arrow_back_ios, color: Colors.pink),
+                  ),
+                ),
+              ),
+              Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 50),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey.shade300),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      height: 52,
-                      width: 52,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 5),
-                        child: Icon(Icons.arrow_back_ios, color: Colors.pink),
-                      ),
-                    ),
+                  Text(
+                    "Discover",
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
-                  Column(
-                    children: [
-                      Text(
-                        "Discover",
-                        style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        "Chicago,11",
-                        style: TextStyle(fontSize: 12, color: Colors.grey),
-                      )
-                    ],
-                  ),
-                  SizedBox(width: 50),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey.shade300),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    height: 52,
-                    width: 52,
-                    child: Padding(
-                        padding: const EdgeInsets.only(left: 5),
-                        child: GestureDetector(
-                            onTap: () => showModalBottomSheet(
-                                context: context,
-                                builder: (context) => buildSheet()),
-                            child: Image.asset(
-                                'assets/images/setting-config.png'))),
-                  ),
+                  Text(
+                    "Chicago,11",
+                    style: TextStyle(fontSize: 12, color: Colors.grey),
+                  )
                 ],
               ),
-              SizedBox(height: 40),
-              Stack(
-                children: [
-                  Container(
-                    height: 450,
-                    width: 295,
-                    child: SwipeCards(
-                      itemChanged: (SwipeItem item, int index) {
-                        print("item: ${item.content.text}, index: $index");
-                      },
-                      matchEngine: _matchEngine!,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          height: 450,
-                          width: 295,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(_names[index]))),
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.only(left: 15, bottom: 15),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Spacer(),
-                                  Text(
-                                    'Jessica parker,23',
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white),
-                                  ),
-                                  Text(
-                                    'Professional modal',
-                                    style: TextStyle(
-                                        fontSize: 14, color: Colors.white),
-                                  )
-                                ]),
-                          ),
-                        );
-                      },
-                      onStackFinished: () {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("Stack Finished"),
-                          duration: Duration(milliseconds: 500),
-                        ));
-                      },
-                      leftSwipeAllowed: true,
-                      rightSwipeAllowed: true,
-                      upSwipeAllowed: true,
-                      fillSpace: true,
-                      likeTag: Center(
-                        child: Padding(
-                          padding: EdgeInsets.only(top: 450 / 2.5, left: 50),
-                          child: CircleAvatar(
-                              radius: 39,
-                              child: Transform.rotate(
-                                angle: -50,
-                                child: Image.asset(
-                                  'assets/images/Vector.png',
-                                  color: Color.fromRGBO(233, 64, 87, 1),
-                                ),
-                              ),
-                              backgroundColor: Colors.white),
-                        ),
-                      ),
-                      nopeTag: Padding(
-                        padding: EdgeInsets.only(top: 450 / 2.5, right: 50),
-                        child: CircleAvatar(
-                          radius: 39,
-                          child: Image.asset('assets/images/close-small.png'),
-                          backgroundColor: Colors.white,
-                        ),
-                      ),
-                      superLikeTag: Center(
-                        child: CircleAvatar(
-                          radius: 39,
-                          child: Image.asset('assets/images/Vector.png'),
-                          backgroundColor: Color.fromRGBO(233, 64, 87, 1),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+              SizedBox(width: 50),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey.shade300),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                height: 52,
+                width: 52,
+                child: Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: GestureDetector(
+                        onTap: () => showModalBottomSheet(
+                            context: context,
+                            builder: (context) => buildSheet()),
+                        child:
+                            Image.asset('assets/images/setting-config.png'))),
               ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  CircleAvatar(
-                    radius: 39,
-                    child: GestureDetector(
-                        onTap: () {
-                          _matchEngine!.currentItem?.nope();
-                        },
-                        child: Image.asset('assets/images/close-small.png')),
-                    backgroundColor: Colors.transparent,
-                  ),
-                  CircleAvatar(
-                    radius: 49,
-                    child: GestureDetector(
-                        onTap: () {
-                          _matchEngine!.currentItem?.superLike();
-                        },
-                        child: Image.asset('assets/images/Vector.png')),
-                    backgroundColor: Color.fromRGBO(233, 64, 87, 1),
-                  ),
-                  CircleAvatar(
-                      radius: 39,
-                      child: GestureDetector(
-                          onTap: () {
-                            _matchEngine!.currentItem?.like();
-                          },
-                          child: Image.asset('assets/images/star.png')),
-                      backgroundColor: Colors.transparent),
-                ],
-              )
-            ]),
+            ],
           ),
-        ));
+          SizedBox(height: 40),
+          Stack(
+            children: [
+              Container(
+                height: 450,
+                width: 295,
+                child: SwipeCards(
+                  itemChanged: (SwipeItem item, int index) {
+                    print("item: ${item.content.text}, index: $index");
+                  },
+                  matchEngine: _matchEngine!,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      height: 450,
+                      width: 295,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage(_names[index]))),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 15, bottom: 15),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Spacer(),
+                              Text(
+                                'Jessica parker,23',
+                                style: TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              ),
+                              Text(
+                                'Professional modal',
+                                style: TextStyle(
+                                    fontSize: 14, color: Colors.white),
+                              )
+                            ]),
+                      ),
+                    );
+                  },
+                  onStackFinished: () {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text("Stack Finished"),
+                      duration: Duration(milliseconds: 500),
+                    ));
+                  },
+                  leftSwipeAllowed: true,
+                  rightSwipeAllowed: true,
+                  upSwipeAllowed: true,
+                  fillSpace: true,
+                  likeTag: Center(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 450 / 2.5, left: 50),
+                      child: CircleAvatar(
+                          radius: 39,
+                          child: Transform.rotate(
+                            angle: -50,
+                            child: Image.asset(
+                              'assets/images/Vector.png',
+                              color: Color.fromRGBO(233, 64, 87, 1),
+                            ),
+                          ),
+                          backgroundColor: Colors.white),
+                    ),
+                  ),
+                  nopeTag: Padding(
+                    padding: EdgeInsets.only(top: 450 / 2.5, right: 50),
+                    child: CircleAvatar(
+                      radius: 39,
+                      child: Image.asset('assets/images/close-small.png'),
+                      backgroundColor: Colors.white,
+                    ),
+                  ),
+                  superLikeTag: Center(
+                    child: CircleAvatar(
+                      radius: 39,
+                      child: Image.asset('assets/images/Vector.png'),
+                      backgroundColor: Color.fromRGBO(233, 64, 87, 1),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              CircleAvatar(
+                radius: 39,
+                child: GestureDetector(
+                    onTap: () {
+                      _matchEngine!.currentItem?.nope();
+                    },
+                    child: Image.asset('assets/images/close-small.png')),
+                backgroundColor: Colors.transparent,
+              ),
+              CircleAvatar(
+                radius: 49,
+                child: GestureDetector(
+                    onTap: () {
+                      _matchEngine!.currentItem?.superLike();
+                    },
+                    child: Image.asset('assets/images/Vector.png')),
+                backgroundColor: Color.fromRGBO(233, 64, 87, 1),
+              ),
+              CircleAvatar(
+                  radius: 39,
+                  child: GestureDetector(
+                      onTap: () {
+                        _matchEngine!.currentItem?.like();
+                      },
+                      child: Image.asset('assets/images/star.png')),
+                  backgroundColor: Colors.transparent),
+            ],
+          )
+        ]),
+      ),
+    );
   }
 
   Widget buildSheet() => Padding(
@@ -348,142 +281,4 @@ class _MainScreenState extends State<MainScreen> {
           ]),
         ),
       );
-}
-
-// class NavigationBarClass extends StatefulWidget {
-//   const NavigationBarClass({super.key});
-
-//   @override
-//   State<NavigationBarClass> createState() => _NavigationBarClassState();
-// }
-
-// class _NavigationBarClassState extends State<NavigationBarClass> {
-//   @override
-//   Widget build(BuildContext context) {
-//     int _index = 0;
-//     final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
-
-//     switch (_index) {
-//       case 0:
-//         _navigatorKey.currentState?.pushReplacementNamed("MainScreen");
-
-//         break;
-//       case 1:
-//         return MatchesPage();
-
-//       case 2:
-//         return MessagesScreen();
-
-//       case 3:
-//         return ProfileScreen();
-//     }
-//     Route<dynamic> generateRoute(RouteSettings settings) {
-//       switch (settings.name) {
-//         case "MatchesPage":
-//           return MaterialPageRoute(builder: (context) => MatchesPage());
-//         case "Messages":
-//           return MaterialPageRoute(builder: (context) => MessagesScreen());
-//         case "ProfileScreen":
-//           return MaterialPageRoute(builder: (context) => ProfileScreen());
-//         default:
-//           return MaterialPageRoute(builder: (context) => MainScreen());
-//       }
-//     }
-
-//     return BottomNavigationBar(
-//       onTap: (newIndex) => setState(() => _index = newIndex),
-//       currentIndex: _index,
-//       items: [
-//         BottomNavigationBarItem(
-//           label: '',
-//           icon: ImageIcon(
-//             AssetImage('assets/images/nav1.png'),
-//           ),
-//         ),
-//         BottomNavigationBarItem(
-//           label: '',
-//           icon: ImageIcon(
-//             AssetImage('assets/images/nav2.png'),
-//           ),
-//         ),
-//         BottomNavigationBarItem(
-//           label: '',
-//           icon: ImageIcon(
-//             AssetImage('assets/images/nav3.png'),
-//           ),
-//         ),
-//         BottomNavigationBarItem(
-//           label: '',
-//           icon: ImageIcon(
-//             AssetImage('assets/images/nav4.png'),
-//           ),
-//         ),
-//       ],
-//       type: BottomNavigationBarType.fixed,
-//       selectedItemColor: Colors.pink,
-//     );
-//   }
-// }
-StatefulWidget bottomNavBar(nIndex) {
-  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
-  int _index = 0;
-  switch (nIndex) {
-    case 0:
-      _navigatorKey.currentState?.pushReplacementNamed("MainScreen");
-
-      break;
-    case 1:
-      return MatchesPage();
-
-    case 2:
-      return MessagesScreen();
-
-    case 3:
-      return ProfileScreen();
-  }
-  Route<dynamic> generateRoute(RouteSettings settings) {
-    switch (settings.name) {
-      case "MatchesPage":
-        return MaterialPageRoute(builder: (context) => MatchesPage());
-      case "Messages":
-        return MaterialPageRoute(builder: (context) => MessagesScreen());
-      case "ProfileScreen":
-        return MaterialPageRoute(builder: (context) => ProfileScreen());
-      default:
-        return MaterialPageRoute(builder: (context) => MainScreen());
-    }
-  }
-
-  return BottomNavigationBar(
-    onTap: (newIndex) => (nIndex),
-    currentIndex: nIndex,
-    items: [
-      BottomNavigationBarItem(
-        label: '',
-        icon: ImageIcon(
-          AssetImage('assets/images/nav1.png'),
-        ),
-      ),
-      BottomNavigationBarItem(
-        label: '',
-        icon: ImageIcon(
-          AssetImage('assets/images/nav2.png'),
-        ),
-      ),
-      BottomNavigationBarItem(
-        label: '',
-        icon: ImageIcon(
-          AssetImage('assets/images/nav3.png'),
-        ),
-      ),
-      BottomNavigationBarItem(
-        label: '',
-        icon: ImageIcon(
-          AssetImage('assets/images/nav4.png'),
-        ),
-      ),
-    ],
-    type: BottomNavigationBarType.fixed,
-    selectedItemColor: Colors.pink,
-  );
 }
