@@ -1,9 +1,11 @@
 import 'package:dating_app_ui/MatchScreen.dart';
 import 'package:dating_app_ui/Matches_page.dart';
+import 'package:dating_app_ui/ProfileScreen.dart';
 import 'package:dating_app_ui/Signup_page.dart';
 import 'package:dating_app_ui/firends.dart';
 import 'package:dating_app_ui/gender.dart';
 import 'package:dating_app_ui/mainScreen.dart';
+import 'package:dating_app_ui/main_layout.dart';
 import 'package:dating_app_ui/messages.dart';
 import 'package:dating_app_ui/notificaton.dart';
 import 'package:dating_app_ui/number_screen.dart';
@@ -29,6 +31,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: MatchesPage());
+        home: Onboarding());
   }
 }

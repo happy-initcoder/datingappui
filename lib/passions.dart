@@ -1,3 +1,4 @@
+import 'package:dating_app_ui/firends.dart';
 import 'package:dating_app_ui/widget/button.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,7 @@ class Passions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(40),
+        padding: const EdgeInsets.all(20),
         child: Container(
             child: Column(
           children: [
@@ -74,7 +75,10 @@ class Passions extends StatelessWidget {
               ],
             ),
             SizedBox(height: 60),
-            Button(name: 'Continue')
+            Button(
+              name: 'Continue',
+              screenName: Friends(),
+            )
           ],
         )),
       ),

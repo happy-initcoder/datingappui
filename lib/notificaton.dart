@@ -1,3 +1,4 @@
+import 'package:dating_app_ui/mainScreen.dart';
 import 'package:dating_app_ui/widget/button.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,10 @@ class NotificationPage extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 128),
-                Button(name: 'I want to be notified')
+                Button(
+                  name: 'I want to be notified',
+                  screenName: MainScreen(),
+                )
               ],
             ),
           ),

@@ -1,5 +1,7 @@
+import 'package:dating_app_ui/number_screen.dart';
 import 'package:dating_app_ui/widget/button.dart';
 import 'package:flutter/material.dart';
+import 'package:intl_phone_field/phone_number.dart';
 
 class SignupPage extends StatelessWidget {
   const SignupPage({super.key});
@@ -19,7 +21,7 @@ class SignupPage extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
             SizedBox(height: 32),
-            Button(name: 'Continue with email'),
+            Button(name: 'Continue with email', screenName: NumberScreen()),
             SizedBox(height: 20),
             Text(
               'Use phone number',

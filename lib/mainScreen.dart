@@ -1,3 +1,7 @@
+import 'package:dating_app_ui/MatchScreen.dart';
+import 'package:dating_app_ui/Matches_page.dart';
+import 'package:dating_app_ui/ProfileScreen.dart';
+import 'package:dating_app_ui/messages.dart';
 import 'package:flutter/material.dart';
 import 'package:swipe_cards/draggable_card.dart';
 import 'package:swipe_cards/swipe_cards.dart';
@@ -11,6 +15,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   List<SwipeItem> _swipeItems = <SwipeItem>[];
+  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
   MatchEngine? _matchEngine;
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   List<String> _names = [
@@ -67,41 +72,75 @@ class _MainScreenState extends State<MainScreen> {
     super.initState();
   }
 
+  int _index = 0;
   @override
   Widget build(BuildContext context) {
+    Widget pn;
+    switch (_index) {
+      case 0:
+        _navigatorKey.currentState?.pushReplacementNamed("MainScreen");
+
+        break;
+      case 1:
+        return MatchesPage();
+
+      case 2:
+        return MessagesScreen();
+
+      case 3:
+        return ProfileScreen();
+    }
+    Route<dynamic> generateRoute(RouteSettings settings) {
+      switch (settings.name) {
+        case "MatchesPage":
+          return MaterialPageRoute(builder: (context) => MatchesPage());
+        case "Messages":
+          return MaterialPageRoute(builder: (context) => MessagesScreen());
+        case "ProfileScreen":
+          return MaterialPageRoute(builder: (context) => ProfileScreen());
+        default:
+          return MaterialPageRoute(builder: (context) => MainScreen());
+      }
+    }
+
     var size = MediaQuery.of(context).size;
+
     return Scaffold(
         key: _scaffoldKey,
-        bottomNavigationBar: BottomNavigationBar(
-          items: [
-            BottomNavigationBarItem(
-              label: '',
-              icon: ImageIcon(
-                AssetImage('assets/images/nav1.png'),
-              ),
-            ),
-            BottomNavigationBarItem(
-              label: '',
-              icon: ImageIcon(
-                AssetImage('assets/images/nav2.png'),
-              ),
-            ),
-            BottomNavigationBarItem(
-              label: '',
-              icon: ImageIcon(
-                AssetImage('assets/images/nav3.png'),
-              ),
-            ),
-            BottomNavigationBarItem(
-              label: '',
-              icon: ImageIcon(
-                AssetImage('assets/images/nav4.png'),
-              ),
-            ),
-          ],
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: Colors.pink,
-        ),
+        bottomNavigationBar: bottomNavBar(_index),
+        // bottomNavigationBar: NavigationBarClass(),
+        // bottomNavigationBar: BottomNavigationBar(
+        //   onTap: (newIndex) => setState(() => _index = newIndex),
+        //   currentIndex: _index,
+        //   items: [
+        //     BottomNavigationBarItem(
+        //       label: '',
+        //       icon: ImageIcon(
+        //         AssetImage('assets/images/nav1.png'),
+        //       ),
+        //     ),
+        //     BottomNavigationBarItem(
+        //       label: '',
+        //       icon: ImageIcon(
+        //         AssetImage('assets/images/nav2.png'),
+        //       ),
+        //     ),
+        //     BottomNavigationBarItem(
+        //       label: '',
+        //       icon: ImageIcon(
+        //         AssetImage('assets/images/nav3.png'),
+        //       ),
+        //     ),
+        //     BottomNavigationBarItem(
+        //       label: '',
+        //       icon: ImageIcon(
+        //         AssetImage('assets/images/nav4.png'),
+        //       ),
+        //     ),
+        //   ],
+        //   type: BottomNavigationBarType.fixed,
+        //   selectedItemColor: Colors.pink,
+        // ),
         body: Padding(
           padding: EdgeInsets.only(top: 25, right: 25, left: 25),
           child: Container(
@@ -309,4 +348,142 @@ class _MainScreenState extends State<MainScreen> {
           ]),
         ),
       );
+}
+
+// class NavigationBarClass extends StatefulWidget {
+//   const NavigationBarClass({super.key});
+
+//   @override
+//   State<NavigationBarClass> createState() => _NavigationBarClassState();
+// }
+
+// class _NavigationBarClassState extends State<NavigationBarClass> {
+//   @override
+//   Widget build(BuildContext context) {
+//     int _index = 0;
+//     final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
+
+//     switch (_index) {
+//       case 0:
+//         _navigatorKey.currentState?.pushReplacementNamed("MainScreen");
+
+//         break;
+//       case 1:
+//         return MatchesPage();
+
+//       case 2:
+//         return MessagesScreen();
+
+//       case 3:
+//         return ProfileScreen();
+//     }
+//     Route<dynamic> generateRoute(RouteSettings settings) {
+//       switch (settings.name) {
+//         case "MatchesPage":
+//           return MaterialPageRoute(builder: (context) => MatchesPage());
+//         case "Messages":
+//           return MaterialPageRoute(builder: (context) => MessagesScreen());
+//         case "ProfileScreen":
+//           return MaterialPageRoute(builder: (context) => ProfileScreen());
+//         default:
+//           return MaterialPageRoute(builder: (context) => MainScreen());
+//       }
+//     }
+
+//     return BottomNavigationBar(
+//       onTap: (newIndex) => setState(() => _index = newIndex),
+//       currentIndex: _index,
+//       items: [
+//         BottomNavigationBarItem(
+//           label: '',
+//           icon: ImageIcon(
+//             AssetImage('assets/images/nav1.png'),
+//           ),
+//         ),
+//         BottomNavigationBarItem(
+//           label: '',
+//           icon: ImageIcon(
+//             AssetImage('assets/images/nav2.png'),
+//           ),
+//         ),
+//         BottomNavigationBarItem(
+//           label: '',
+//           icon: ImageIcon(
+//             AssetImage('assets/images/nav3.png'),
+//           ),
+//         ),
+//         BottomNavigationBarItem(
+//           label: '',
+//           icon: ImageIcon(
+//             AssetImage('assets/images/nav4.png'),
+//           ),
+//         ),
+//       ],
+//       type: BottomNavigationBarType.fixed,
+//       selectedItemColor: Colors.pink,
+//     );
+//   }
+// }
+StatefulWidget bottomNavBar(nIndex) {
+  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
+  int _index = 0;
+  switch (nIndex) {
+    case 0:
+      _navigatorKey.currentState?.pushReplacementNamed("MainScreen");
+
+      break;
+    case 1:
+      return MatchesPage();
+
+    case 2:
+      return MessagesScreen();
+
+    case 3:
+      return ProfileScreen();
+  }
+  Route<dynamic> generateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case "MatchesPage":
+        return MaterialPageRoute(builder: (context) => MatchesPage());
+      case "Messages":
+        return MaterialPageRoute(builder: (context) => MessagesScreen());
+      case "ProfileScreen":
+        return MaterialPageRoute(builder: (context) => ProfileScreen());
+      default:
+        return MaterialPageRoute(builder: (context) => MainScreen());
+    }
+  }
+
+  return BottomNavigationBar(
+    onTap: (newIndex) => (nIndex),
+    currentIndex: nIndex,
+    items: [
+      BottomNavigationBarItem(
+        label: '',
+        icon: ImageIcon(
+          AssetImage('assets/images/nav1.png'),
+        ),
+      ),
+      BottomNavigationBarItem(
+        label: '',
+        icon: ImageIcon(
+          AssetImage('assets/images/nav2.png'),
+        ),
+      ),
+      BottomNavigationBarItem(
+        label: '',
+        icon: ImageIcon(
+          AssetImage('assets/images/nav3.png'),
+        ),
+      ),
+      BottomNavigationBarItem(
+        label: '',
+        icon: ImageIcon(
+          AssetImage('assets/images/nav4.png'),
+        ),
+      ),
+    ],
+    type: BottomNavigationBarType.fixed,
+    selectedItemColor: Colors.pink,
+  );
 }

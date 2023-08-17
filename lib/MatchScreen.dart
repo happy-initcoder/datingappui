@@ -25,7 +25,7 @@ class MatchScreen extends StatelessWidget {
                 style: TextStyle(color: Colors.grey, fontSize: 14),
               ),
               SizedBox(height: 50),
-              Button(name: 'Say hello'),
+              // Button(name: 'Say hello'),
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),

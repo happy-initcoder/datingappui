@@ -1,3 +1,4 @@
+import 'package:dating_app_ui/notificaton.dart';
 import 'package:dating_app_ui/widget/button.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,9 @@ class Friends extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 128),
-                Button(name: 'Access to a contact list')
+                Button(
+                    name: 'Access to a contact list',
+                    screenName: NotificationPage())
               ],
             ),
           ),

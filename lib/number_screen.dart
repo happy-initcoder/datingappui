@@ -1,3 +1,4 @@
+import 'package:dating_app_ui/profile_details.dart';
 import 'package:dating_app_ui/widget/button.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
@@ -39,7 +40,10 @@ class NumberScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 64),
-          Button(name: 'Continue')
+          Button(
+            name: 'Continue',
+            screenName: ProfileDetailPage(),
+          )
         ],
       ),
     ));

@@ -1,3 +1,4 @@
+import 'package:dating_app_ui/gender.dart';
 import 'package:dating_app_ui/widget/button.dart';
 import 'package:flutter/material.dart';
 
@@ -86,7 +87,7 @@ class ProfileDetailPage extends StatelessWidget {
                 ]),
               ),
               SizedBox(height: 70),
-              Button(name: 'Confirm')
+              Button(name: 'Confirm', screenName: GenderSelect())
             ]),
           ),
         ),

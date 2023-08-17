@@ -1,43 +1,85 @@
 import 'dart:ui';
 
+import 'package:dating_app_ui/MatchScreen.dart';
+import 'package:dating_app_ui/ProfileScreen.dart';
+import 'package:dating_app_ui/mainScreen.dart';
+import 'package:dating_app_ui/messages.dart';
 import 'package:flutter/material.dart';
 
-class MatchesPage extends StatelessWidget {
+class MatchesPage extends StatefulWidget {
   const MatchesPage({super.key});
 
   @override
+  State<MatchesPage> createState() => _MatchesPageState();
+}
+
+class _MatchesPageState extends State<MatchesPage> {
+  @override
   Widget build(BuildContext context) {
+    final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
+    int _index = 1;
+    Widget pn;
+    switch (_index) {
+      case 0:
+        _navigatorKey.currentState?.pushReplacementNamed("MainScreen");
+
+        break;
+      case 1:
+        return MatchesPage();
+
+      case 2:
+        return MessagesScreen();
+
+      case 3:
+        return ProfileScreen();
+    }
+    Route<dynamic> generateRoute(RouteSettings settings) {
+      switch (settings.name) {
+        case "MatchesPage":
+          return MaterialPageRoute(builder: (context) => MatchesPage());
+        case "Messages":
+          return MaterialPageRoute(builder: (context) => MessagesScreen());
+        case "ProfileScreen":
+          return MaterialPageRoute(builder: (context) => ProfileScreen());
+        default:
+          return MaterialPageRoute(builder: (context) => MainScreen());
+      }
+    }
+
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            label: '',
-            icon: ImageIcon(
-              AssetImage('assets/images/nav1.png'),
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: '',
-            icon: ImageIcon(
-              AssetImage('assets/images/nav2.png'),
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: '',
-            icon: ImageIcon(
-              AssetImage('assets/images/nav3.png'),
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: '',
-            icon: ImageIcon(
-              AssetImage('assets/images/nav4.png'),
-            ),
-          ),
-        ],
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.pink,
-      ),
+      bottomNavigationBar: bottomNavBar(_index),
+      // BottomNavigationBar(
+      //   onTap: (newIndex) => setState(() => _index = newIndex),
+      //   currentIndex: _index,
+      //   items: [
+      //     BottomNavigationBarItem(
+      //       label: '',
+      //       icon: ImageIcon(
+      //         AssetImage('assets/images/nav1.png'),
+      //       ),
+      //     ),
+      //     BottomNavigationBarItem(
+      //       label: '',
+      //       icon: ImageIcon(
+      //         AssetImage('assets/images/nav2.png'),
+      //       ),
+      //     ),
+      //     BottomNavigationBarItem(
+      //       label: '',
+      //       icon: ImageIcon(
+      //         AssetImage('assets/images/nav3.png'),
+      //       ),
+      //     ),
+      //     BottomNavigationBarItem(
+      //       label: '',
+      //       icon: ImageIcon(
+      //         AssetImage('assets/images/nav4.png'),
+      //       ),
+      //     ),
+      //   ],
+      //   type: BottomNavigationBarType.fixed,
+      //   selectedItemColor: Colors.pink,
+      // ),
       body: Padding(
         padding: EdgeInsets.only(top: 40, right: 40, left: 40),
         child: SingleChildScrollView(

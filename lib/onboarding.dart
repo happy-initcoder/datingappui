@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dating_app_ui/Signup_page.dart';
 import 'package:dating_app_ui/widget/button.dart';
 import 'package:flutter/material.dart';
 
@@ -105,7 +106,7 @@ class Onboarding extends StatelessWidget {
               ],
             ),
           ),
-          Button(name: 'Create an Account'),
+          Button(name: 'Create an Account', screenName: SignupPage()),
           SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
