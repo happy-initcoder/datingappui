@@ -1,3 +1,4 @@
+import 'package:dating_app_ui/NavigatorSceen.dart';
 import 'package:dating_app_ui/mainScreen.dart';
 import 'package:dating_app_ui/widget/button.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class NotificationPage extends StatelessWidget {
                 SizedBox(height: 128),
                 Button(
                   name: 'I want to be notified',
-                  screenName: MainScreen(),
+                  screenName: NavigatorScreen(),
                 )
               ],
             ),

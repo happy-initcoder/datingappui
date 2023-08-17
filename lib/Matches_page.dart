@@ -17,7 +17,7 @@ class _MatchesPageState extends State<MatchesPage> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 40, right: 40, left: 40),
+      padding: EdgeInsets.only(top: 40, right: 25, left: 25),
       child: SingleChildScrollView(
         child: Container(
           child: Column(

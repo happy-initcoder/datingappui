@@ -19,7 +19,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
     var size = MediaQuery.of(context).size;
 
     return Padding(
-      padding: EdgeInsets.only(left: 40, top: 40),
+      padding: EdgeInsets.only(left: 30, top: 40),
       child: Container(
         child: Column(
           children: [
@@ -129,7 +129,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
             ),
             SizedBox(
               width: size.width - 40,
-              height: 390,
+              height: 370,
               child: ListView.builder(
                 itemCount: 10,
                 itemBuilder: (context, index) {
