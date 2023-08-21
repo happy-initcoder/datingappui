@@ -2,6 +2,7 @@ import 'package:dashed_circle/dashed_circle.dart';
 import 'package:dating_app_ui/MatchScreen.dart';
 import 'package:dating_app_ui/Matches_page.dart';
 import 'package:dating_app_ui/ProfileScreen.dart';
+import 'package:dating_app_ui/StoryScreen.dart';
 import 'package:dating_app_ui/mainScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -97,16 +98,25 @@ class _MessagesScreenState extends State<MessagesScreen> {
                     padding: EdgeInsets.only(right: 15),
                     child: Column(
                       children: [
-                        DashedCircle(
-                          gapSize: 0,
-                          color: Colors.pink,
-                          child: Padding(
-                            padding: const EdgeInsets.all(3.0),
-                            child: CircleAvatar(
-                              radius: 33,
-                              backgroundColor: Colors.red,
-                              backgroundImage:
-                                  AssetImage('assets/images/photo1.png'),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => StoryPage(),
+                              ),
+                            );
+                          },
+                          child: DashedCircle(
+                            gapSize: 0,
+                            color: Colors.pink,
+                            child: Padding(
+                              padding: const EdgeInsets.all(3.0),
+                              child: CircleAvatar(
+                                radius: 33,
+                                backgroundColor: Colors.red,
+                                backgroundImage:
+                                    AssetImage('assets/images/photo1.png'),
+                              ),
                             ),
                           ),
                         ),

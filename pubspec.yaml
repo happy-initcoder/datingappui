@@ -41,6 +41,7 @@ dependencies:
   intl_phone_field: ^3.2.0
   swipe_cards: ^2.0.0+1
   dashed_circle: ^0.0.2
+  syncfusion_flutter_datepicker: ^22.2.9
 
 dev_dependencies:
   flutter_test:
@@ -115,7 +116,9 @@ flutter:
     - assets/images/g3.png
     - assets/images/g4.png
     - assets/images/g5.png
-    
+    - assets/images/story.png
+    - assets/images/send.png
+    - assets/images/sticskers.png
 
 
 

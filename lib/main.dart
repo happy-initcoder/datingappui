@@ -3,6 +3,7 @@ import 'package:dating_app_ui/Matches_page.dart';
 import 'package:dating_app_ui/NavigatorSceen.dart';
 import 'package:dating_app_ui/ProfileScreen.dart';
 import 'package:dating_app_ui/Signup_page.dart';
+import 'package:dating_app_ui/StoryScreen.dart';
 import 'package:dating_app_ui/firends.dart';
 import 'package:dating_app_ui/galary_view.dart';
 import 'package:dating_app_ui/gender.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Onboarding(),
+      home: StoryPage(),
     );
   }
 }

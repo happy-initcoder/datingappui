@@ -1,6 +1,7 @@
 import 'package:dating_app_ui/gender.dart';
 import 'package:dating_app_ui/widget/button.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class ProfileDetailPage extends StatelessWidget {
   const ProfileDetailPage({super.key});
@@ -70,22 +71,30 @@ class ProfileDetailPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 10),
-              Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Color.fromRGBO(233, 64, 87, .1)),
-                height: 58,
-                width: 295,
-                child: Row(children: [
-                  Icon(
-                    Icons.calendar_month,
-                    color: Colors.pink,
-                  ),
-                  Text(
-                    'Choose birth day',
-                    style: TextStyle(color: Colors.pink),
-                  )
-                ]),
+              GestureDetector(
+                onTap: () {
+                  // showDatePicker(
+                  //     context: context,
+                  //     firstDate: DateTime.now(),
+                  //     lastDate: DateTime(1950));
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Color.fromRGBO(233, 64, 87, .1)),
+                  height: 58,
+                  width: 295,
+                  child: Row(children: [
+                    Icon(
+                      Icons.calendar_month,
+                      color: Colors.pink,
+                    ),
+                    Text(
+                      'Choose birth day',
+                      style: TextStyle(color: Colors.pink),
+                    )
+                  ]),
+                ),
               ),
               SizedBox(height: 70),
               Button(name: 'Confirm', screenName: GenderSelect())
